@@ -1,0 +1,28 @@
+<div>
+    <h3>Login</h3> <br/>
+    <input type="text" id="loginName" placeholder="name" /><br/><br/>
+
+    <input type="password" id="loginPassword" placeholder="password" /><br/><br/>
+
+    <button id="loginButton">Login</button>
+</div>
+
+<script>
+    $("#loginButton").click(function(){
+        var username = $("#loginName").val();
+        var password = $("#loginPassword").val();
+        if (username && password) {
+            $.post(
+                '/login',
+                {username: username, password:password},
+                function () {
+                   // window.location = "/login";
+                }
+            ).fail(function(res){
+                alert("Error: " + res.getResponseHeader("error"));
+            });
+        } else {
+            alert("A username and password is required");
+        }
+    });
+</script>

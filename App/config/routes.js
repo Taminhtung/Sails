@@ -32,27 +32,22 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-    '/' : {
-         controller: 'homepage',
-         action: 'app'
-    },
-
+  '/' : {
+         controller: 'main',
+         action: 'index'
+        },
+    // '/signup' : {
+    //      controller: 'main',
+    //      action: 'signup'
+    // },
     '/login' : {
-         controller: 'homepage',
+         controller: 'main',
          action: 'login'
-    },
-  // '/add_user':{
-  //    view : 'add_user'
-  // },
-
-  // '/del_user':{
-  //    view : 'del_user'
-  // },
-
-  // '/login':{
-  //    view : 'del_user'
-  // },
-
+    }
+    // '/chat' : {
+    //      controller: 'main',
+    //      action: 'chat'
+    // }
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
