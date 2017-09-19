@@ -40,14 +40,39 @@ module.exports.routes = {
     //      controller: 'main',
     //      action: 'signup'
     // },
-    '/login' : {
+
+  'post /createUser' : {
+         controller: 'mainController',
+         action: 'createUser'
+   },
+
+
+  'post /createRole' : {
+         controller: 'mainController',
+         action: 'createRole'
+    },
+
+  'post /createFunc' : {
+         controller: 'mainController',
+         action: 'createFunc'
+    },
+
+  '/add_user' : {
          controller: 'main',
-         action: 'login'
-    }
-    // '/chat' : {
-    //      controller: 'main',
-    //      action: 'chat'
-    // }
+         action: 'add_user'
+    },
+
+   '/add_role' : {
+         controller: 'main',
+         action: 'add_role'
+    } ,
+
+    '/add_func' : {
+         controller: 'main',
+         action: 'add_func'
+    } 
+
+   
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,22 +14,31 @@
 
   <body>
     <div>
-    <h3>Login</h3> <br/>
-    <input type="text" id="loginName" placeholder="name" /><br/><br/>
+    <h3>Add User</h3> 
+    User Name:
+    <input type="text" id="userName" placeholder="name" /><br/><br/>
+    Role : 
+    <select id="rN">
+       <% roles.forEach(function(i){ %>
+          <option>
+             <%= i%>
+          </option>
 
-    <input type="password" id="loginPassword" placeholder="password" /><br/><br/>
-
-    <button id="loginButton">Login</button>
+       <% }); %>
+      
+    </select>
+    <br/><br/>
+    <button id="addButton">Add User</button>
 </div>
 
 <script>
-    $("#loginButton").click(function(){
-        var username = $("#loginName").val();
-        var password = $("#loginPassword").val();
-        if (username && password) {
+    $("#addButton").click(function(){
+        var username = $("#userName").val();
+       
+        if (username) {
             $.post(
                 '/createUser',
-                {username: username, password:password}
+                {username: username, password:username, rolename : $("#rN").val() }
             );
             
         } else {
@@ -40,10 +48,3 @@
 </script>
   </body>
 </html>
-
-
-
-
-
-
-

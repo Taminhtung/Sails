@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Add Role</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,23 +14,33 @@
 
   <body>
     <div>
-    <h3>Login</h3> <br/>
-    <input type="text" id="loginName" placeholder="name" /><br/><br/>
+    <h3>Add Func</h3> 
+    Function: 
+    <input type="text" id="functionName" placeholder="name" /><br/><br/>
+    Function: 
+    <select id="fN">
+       <% Funcs.forEach(function(i){ %>
+          <option>
+             <%= i%>
+          </option>
 
-    <input type="password" id="loginPassword" placeholder="password" /><br/><br/>
-
-    <button id="loginButton">Login</button>
+       <% }); %>
+      
+    </select>
+    <br/><br/>
+    <button id="addButton">Add Func</button>
 </div>
 
 <script>
-    $("#loginButton").click(function(){
-        var username = $("#loginName").val();
-        var password = $("#loginPassword").val();
-        if (username && password) {
+    $("#addButton").click(function(){
+        var functionname = $("#functionName").val();
+       
+        if (functionname) {
             $.post(
-                '/createUser',
-                {username: username, password:password}
+                '/createFunc',
+                {functionname: functionname }
             );
+            
             
         } else {
             alert("A username and password is required");
@@ -40,10 +49,3 @@
 </script>
   </body>
 </html>
-
-
-
-
-
-
-
