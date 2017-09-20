@@ -16,21 +16,26 @@
   <body>
     <div>
     <h3>Login</h3> <br/>
-    <input type="text" id="loginName" placeholder="name" /><br/><br/>
+    User Name: <input type="text" id="loginName" placeholder="name" /><br/><br/>
 
-    <input type="password" id="loginPassword" placeholder="password" /><br/><br/>
+    Password: <input type="password" id="loginPassword" placeholder="password" /><br/><br/>
 
     <button id="loginButton">Login</button>
 </div>
+
 
 <script>
     $("#loginButton").click(function(){
         var username = $("#loginName").val();
         var password = $("#loginPassword").val();
-        if (username && password) {
+        if (username && password) {  
+            
             $.post(
-                '/createUser',
-                {username: username, password:password}
+                '/login',
+                {username: username, password:password},
+                function () {
+                    window.location = "/home";
+                }
             );
             
         } else {
@@ -38,6 +43,7 @@
         }
     });
 </script>
+
   </body>
 </html>
 

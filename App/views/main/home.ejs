@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    
+  </head>
+
+  <body>
+
+     <h1> Xin chào <%= username %> </h1>
+     <h3>  Bạn có thể dùng các thao tác sau: </h3>
+     <h3>
+         <% listfunction.forEach(function(i){ %>
+             <button class="bt" ><%=i %></button> <br/>
+         <% }); %>
+
+     </h3>
+
+     <script>
+         $(".bt").click(function(){
+            var func = $(this).text();
+
+            var s;
+
+            if(func=="Thêm User") s="/main/add_user";
+            else
+                if(func=="Thêm role") s="/main/add_role";
+            
+            alert(func);
+            
+
+       
+            $.post('/process', {func:func} ,
+                function () {
+                    window.location = s;
+                }
+            )
+            
+         });
+        </script>
+  </body>
+</html>
+
+
+
+
+
+
+

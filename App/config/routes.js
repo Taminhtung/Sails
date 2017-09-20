@@ -36,10 +36,16 @@ module.exports.routes = {
          controller: 'main',
          action: 'index'
         },
-    // '/signup' : {
-    //      controller: 'main',
-    //      action: 'signup'
-    // },
+  'post /login' : {
+         controller: 'mainController',
+         action: 'login'
+    },
+
+   '/home' : {
+         controller: 'mainController',
+         action: 'home'
+    },
+
 
   'post /createUser' : {
          controller: 'mainController',
@@ -57,20 +63,15 @@ module.exports.routes = {
          action: 'createFunc'
     },
 
-  '/add_user' : {
-         controller: 'main',
-         action: 'add_user'
-    },
-
-   '/add_role' : {
-         controller: 'main',
-         action: 'add_role'
-    } ,
-
     '/add_func' : {
          controller: 'main',
          action: 'add_func'
-    } 
+    },
+
+    'post /process':{
+         controller: 'mainController',
+         action: 'process'
+    }
 
    
   /***************************************************************************
