@@ -37,7 +37,7 @@ module.exports.routes = {
          action: 'index'
         },
   'post /login' : {
-         controller: 'mainController',
+         controller: 'main',
          action: 'login'
     },
 
@@ -47,13 +47,27 @@ module.exports.routes = {
     },
 
 
-  'post /createUser' : {
+  'post /user' : {
          controller: 'mainController',
          action: 'createUser'
    },
 
+   'post /d_user' : {
+         controller: 'mainController',
+         action: 'destroyuser'
+   },
 
-  'post /createRole' : {
+   'post /d_role' : {
+         controller: 'mainController',
+         action: 'destroyrole'
+   },
+
+   'post /u_user' : {
+         controller: 'mainController',
+         action: 'updateuser'
+   },
+
+  'post /role' : {
          controller: 'mainController',
          action: 'createRole'
     },

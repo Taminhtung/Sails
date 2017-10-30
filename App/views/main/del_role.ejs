@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    
+  </head>
+
+  <body>
+ 
+     Role: <input type="text" id="rolename" placeholder="rolename" /><br/><br/>
+     <button id= "bt"> Delete role</button>
+
+     <script >
+         $("#bt").click(function(){
+             var rolename = $("#rolename").val();
+
+             $.post(
+                '/d_role', {rolename: rolename}
+             );
+         }
+
+         );
+
+     </script>
+  </body>
+</html>
+
+
+
+
+
+
+

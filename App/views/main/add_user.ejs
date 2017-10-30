@@ -37,7 +37,7 @@
        
         if (username) {
             $.post(
-                '/createUser',
+                '/user',
                 {username: username, password:username, rolename : $("#rN").val() }
             );
             

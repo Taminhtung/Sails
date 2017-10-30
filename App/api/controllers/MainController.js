@@ -12,10 +12,11 @@ var MainController = {
        
     },
     login: function (req, res) {
+
         var username = req.param("username");
         var password = req.param("password");
         User.findOne({username:username, password: password}).exec(function (err, user) {
-            if (err)  res.send(500, { error: "DB Error" });
+            if (err)  res.redirect('/');
             else 
                 if (user) {
                     
@@ -54,7 +55,11 @@ var MainController = {
                     res.send(user);
 
                 }
-                else res.send(404, { error: "User not Found" });
+                else{
+
+                   res.redirect('/');  
+                   
+                }
         });  
     },
 
@@ -242,6 +247,139 @@ var MainController = {
         }
     },
 
+    del_user:function (req, res){
+       if(req.session.user){
+           res.view();
+       }
+       else{
+          res.send(404,{err: "Lỗi"})
+       }
+    
+
+        
+    },
+
+    del_role:function (req, res){
+       if(req.session.user){
+           res.view();
+       }
+       else{
+          res.send(404,{err: "Lỗi"})
+       }
+    
+
+        
+    },
+
+    update_user:function (req, res){
+       if(req.session.user){
+           res.view();
+       }
+       else{
+          res.send(404,{err: "Lỗi"})
+       }
+    
+
+        
+    },
+
+    destroyuser:function (req, res){
+       if(req.session.user){
+           var username = req.param("username");
+           User.findOne({username: username}).exec(function(err, user){
+                if(err){
+
+                }
+
+
+
+                else if(user){
+                    console.log(username);
+                    User.destroy({id: user.id}).exec(function(err){});
+                    User_role.destroy({user_id: user.id}).exec(function(err){});
+                    User_function.destroy({user_id: user.id}).exec(function(err){});
+
+                }
+
+                else{
+
+                }
+
+           });
+       }
+       else{
+            res.send(404,{err: "Lỗi"})
+       }
+    
+
+        
+    },
+
+
+    destroyrole:function (req, res){
+       if(req.session.user){
+           var rolename = req.param("rolename");
+           Role.findOne({rolename: rolename}).exec(function(err, role){
+                if(err){
+
+                }
+
+                else if(role){
+                    Role.destroy({id: role.id}).exec(function(err){});
+                    User_role.destroy({role_id: role.id}).exec(function(err){});
+                    Role_function.destroy({role_id: role.id}).exec(function(err){});
+                }
+                else{
+
+                }
+
+           });
+       }
+       else{
+            res.send(404,{err: "Lỗi"})
+       }
+    
+
+        
+    },
+
+    updateuser:function (req, res){
+       if(req.session.user){
+           var oldname = req.param("oldname");
+           var newname = req.param("newname");
+        
+           User.findOne({username: oldname}).exec(function(err,user){
+                if(err){}
+                else
+                    if(user){
+                        User.findOne({username: newname}).exec(function(err,user1){
+                            if(user1){}
+                                else{
+                                    User.update({username: oldname}, {username: newname}).exec(function afterwards(err, update){ });
+
+                                }
+                        });
+                    }
+                    else{
+
+                    }
+
+           });
+
+
+           
+       }
+       else{
+            res.send(404,{err: "Lỗi"})
+       }
+    
+
+        
+    },
+
+
+
+
 
     process:function (req, res){
         if(req.session.user){ 
@@ -261,21 +399,40 @@ var MainController = {
             else 
                 if(func=="Thêm role"){
                     Func.find().exec(function(err, data ){
-                    var t = [] ;
-                    for (var i = 0; i < data.length; i++){
-                         t.push(data[i].functionname);
-                    }
+                        var t = [] ;
+                        for (var i = 0; i < data.length; i++){
+                            t.push(data[i].functionname);
+                        }
                         
-                    res.view("main/add_role",{Funcs: t});
+                        res.view("main/add_role",{Funcs: t});
 
-                });
+                    });
+                }
 
-            }
+                else 
+                    if(func=="Xóa User"){
 
-         }
+                        res.view("main/del_user");
+                    }
+
+                    else
+                        if(func=="Xóa role"){
+                            res.view("main/del_role");
+                        }
+                        else
+                            if(func=="Đổi tên user"){
+                                res.view("main/update_user");
+                        }
+
+                    
+
+
+            
+
+        }
 
          else{
-
+              res.redirect('/');
          }    
     }
 
